@@ -135,7 +135,11 @@ do {
         -Execute 'npx.cmd' `
         -Argument '--yes "@wonderwhy-er/desktop-commander@latest" remote'
 
-$trigger = New-ScheduledTaskTrigger -AtLogOn -User "$env:USERDOMAIN\$env:USERNAME"
+
+
+$trigger = New-ScheduledTaskTrigger -AtStartup
+# $trigger = New-ScheduledTaskTrigger -AtLogOn -User "$env:USERDOMAIN\$env:USERNAME"
+
 
     $settings = New-ScheduledTaskSettingsSet `
         -StartWhenAvailable `
