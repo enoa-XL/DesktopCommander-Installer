@@ -149,7 +149,7 @@ $trigger = New-ScheduledTaskTrigger -AtLogOn -User "$env:USERDOMAIN\$env:USERNAM
         -Settings $settings `
         -Description 'Inicia Desktop Commander Remote al arrancar Windows.' `
 -User "$env:USERDOMAIN\$env:USERNAME" `
--RunLevel Limited ``
+-RunLevel Limited `
         -Force -ErrorAction Stop
 
 $task = Get-ScheduledTask -TaskName $taskName -ErrorAction Stop
