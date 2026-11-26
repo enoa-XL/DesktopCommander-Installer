@@ -135,7 +135,7 @@ do {
         -Execute 'npx.cmd' `
         -Argument '--yes "@wonderwhy-er/desktop-commander@latest" remote'
 
-    $trigger = New-ScheduledTaskTrigger -AtStartup
+   $trigger = New-ScheduledTaskTrigger -AtLogOn -User "$env:USERDOMAIN\$env:USERNAME"
 
     $settings = New-ScheduledTaskSettingsSet `
         -StartWhenAvailable `
@@ -148,17 +148,15 @@ do {
         -Trigger $trigger `
         -Settings $settings `
         -Description 'Inicia Desktop Commander Remote al arrancar Windows.' `
-        -User 'SYSTEM' `
-        -RunLevel Highest `
-        -Force
+-User "$env:USERDOMAIN\$env:USERNAME" `
+-RunLevel Limited ``
+        -Force -ErrorAction Stop
 
-    Write-Host "Tarea creada correctamente: $taskName" -ForegroundColor Green
+$task = Get-ScheduledTask -TaskName $taskName -ErrorAction Stop
 
-    Get-ScheduledTask -TaskName $taskName | Select-Object `
-        TaskName,
-        State,
-        TaskPath |
-    Format-Table
+$task | Select-Object TaskName, State, TaskPath | Format-Table
+
+Write-Host "Tarea creada y verificada correctamente: $taskName" -ForegroundColor Green
 }
 
 '8' {
