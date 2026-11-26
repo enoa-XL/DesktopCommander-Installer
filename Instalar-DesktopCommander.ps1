@@ -192,3 +192,7 @@ Write-Host "Tarea creada y verificada correctamente: $taskName" -ForegroundColor
         }
     } catch { Write-Warning $_.Exception.Message }
 } while ($choice -ne '9')
+
+
+# Limpieza del archivo temporal
+Remove-Item -LiteralPath "$env:TEMP\Instalar-DesktopCommander.ps1" -ErrorAction Stop
