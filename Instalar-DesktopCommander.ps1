@@ -137,8 +137,8 @@ do {
 
 
 
-$trigger = New-ScheduledTaskTrigger -AtStartup
-# $trigger = New-ScheduledTaskTrigger -AtLogOn -User "$env:USERDOMAIN\$env:USERNAME"
+# $trigger = New-ScheduledTaskTrigger -AtStartup
+ $trigger = New-ScheduledTaskTrigger -AtLogOn -User "$env:USERDOMAIN\$env:USERNAME"
 
 
     $settings = New-ScheduledTaskSettingsSet `
